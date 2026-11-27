@@ -4,6 +4,15 @@ All notable changes to `phil/tenancy-bundle` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](https://keepachangelog.com/) principles.
 
+## 0.2.2-alpha - 2026-11-27
+
+### Changed
+
+- `TenantMiddleware` carries Messenger's `#[AsMessageMiddleware(bus: '*')]`, and the bundle registers it autoconfigured:
+  it goes on every bus without being listed, in front of the middleware that sends and handles the message and before
+  the Doctrine middleware (`TenantMiddleware::BEFORE`), so that the connection they open is the tenant's. A bus whose
+  configuration lists it keeps it where the configuration puts it.
+
 ## 0.2.1-alpha - 2026-11-26
 
 ### Changed
